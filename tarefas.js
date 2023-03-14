@@ -15,7 +15,7 @@ function resetar_formulario() {
 }
 
 function atualizar_tela(){
-    
+    // Manipulacao de DOM
     const ul_tarefas = document.getElementById('list-tarefa')
     ul_tarefas.innerHTML = []
 
@@ -23,22 +23,27 @@ function atualizar_tela(){
         const item = document.createElement('li')
         const label = `#${tarefa.id} - ${tarefa.descricao} -  ${tarefa.responsavel} - ${tarefa.nivel} -  ${tarefa.prioridade} -  ${tarefa.situacao}  `
 
-        const btn_editar = document.createElement('a') 
-        btn_editar.innerText = 'Editar' 
+        const btn_editar = document.createElement('a') // <a></a>
+        btn_editar.innerText = 'Editar' // <a>Editar</a>
         btn_editar.href = '#'
         
         btn_editar.onclick = (event) => {
             event.preventDefault()
+
+            // 1. Preencher o Formulário
             preencher_formulario(tarefa)
             
-            
+            // 2. Mudar o Label do Botão para Atualizar
             const btn_confirmar = document.getElementById('btn-confirmar')
             btn_confirmar.value = 'Editar Tarefa'
+
+            // 3. Salvar um Estado Global se está editando
             editing = true
             tarefa_id = tarefa.id
         }
 
-        const btn_remover = document.createElement('a') 
+        const btn_remover = document.createElement('a') // <a></a>
+        btn_remover.innerText = 'Remover' // <a>Editar</a>
         btn_remover.href = '#'
         const espaco = document.createElement('span')
         espaco.innerText = ' '
@@ -69,34 +74,33 @@ function atualizar_tela(){
     }
 }
 
-function preencher_formulario(tarefa){
-  const form_tarefa = document.getElementById('form-tarefa')
+//function preencher_formulario(filme){
+  //  const form_filme = document.getElementById('form-filme')
 
-    const inputs = form_tarefa.children
-    inputs[0].value = tarefa.descricao
-    inputs[1].value = tarefa.responsavel
-    inputs[2].value = tarefa.nivel
-    inputs[3].value = tarefa.prioridade
-    inputs[4].value = tarefa.situacao
-}
+    //const inputs = form_filme.children
+  //  inputs[0].value = filme.nome
+  //  inputs[1].value = filme.genero
+    //inputs[2].value = filme.ano
+   // inputs[3].value = filme.duracao
+//}
 
+//async function carregar_filmes(){
+  //  console.log('API - Todos os filmes')
+  //  const response = await fetch(baseURL)
 
-async function carregar_tarefas(){
-console.log('API - Todos as tarefas cadastradas')
-const response = await fetch(baseURL)
+  //  const status = response.status
+   // filmes = await response.json()
 
-const status = response.status
-tarefas = await response.json()
+    //atualizar_tela()
 
-atualizar_tela()
+    // console.log('Status', status)
+    // console.log('Dados', dados)
+//}
 
-console.log('Status', status)
-console.log('Dados', dados)
-}
+//function configurar_formulario(){
+   // const form_filme = document.getElementById('form-filme')
+ //   const input_duracao = document.getElementById('duracao')
 
-function configurar_formulario(){
-const form_tarefas = document.getElementById('form-tarefas')
-const input_nivel = document.getElementById('nivel')
-}
+   //
 
 app()
